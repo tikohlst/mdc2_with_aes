@@ -35,4 +35,4 @@ This script is licensed under the MIT license. See [LICENSE-file](./LICENSE) for
 
 ### Copyright
 
-Copyright (c) 2019 [Tim Kohlstadt](mailto:tim.kohlstadt@blun.org).
+Copyright (c) 2020 [Tim Kohlstadt](mailto:tim.kohlstadt@blun.org).
