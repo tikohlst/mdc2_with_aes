@@ -2,11 +2,14 @@
 #   Filename:   mdc2_with_aes.py                                #
 #   Version:    Python 3.7.5                                    #
 #   Author:     Tim Kohlstadt                                   #
-#   Date:       2019-03-15                                      #
+#   Date:       2020-01-26                                      #
 #################################################################
 
 # Library "PyCryptodome":
 # https://pycryptodome.readthedocs.io/en/latest/index.html
+
+# PEP 8 codestyle check with:
+# http://pep8online.com/
 
 import binascii
 from Crypto.Cipher import AES
@@ -46,6 +49,7 @@ if RUNTIME is True:
 #######################
 # function definition
 #
+
 
 def encrypt(key, data, aesni):
     if CLOCK_CYCLES is True:
@@ -94,7 +98,7 @@ if RUNTIME_AES is True:
     time_proc = (time.process_time() - start_proc) * 1000
     time_time = (time.time() - start_time) * 1000
     print("encrypt: %.5f ms (time() function) | %.5f ms (process_time() "
-            "function)." % (time_time, time_proc))
+          "function)." % (time_time, time_proc))
 
     start_time = time.time()
     start_proc = time.process_time()
@@ -104,7 +108,7 @@ if RUNTIME_AES is True:
     time_proc = (time.process_time() - start_proc) * 1000
     time_time = (time.time() - start_time) * 1000
     print("decrypt: %.5f ms (time() function) | %.5f ms (process_time() "
-            "function).\n" % (time_time, time_proc))
+          "function).\n" % (time_time, time_proc))
 
     print("Runtime AES with AES-NI:")
     start_time = time.time()
@@ -115,7 +119,7 @@ if RUNTIME_AES is True:
     time_proc = (time.process_time() - start_proc) * 1000
     time_time = (time.time() - start_time) * 1000
     print("encrypt: %.5f ms (time() function) | %.5f ms (process_time() "
-            "function)." % (time_time, time_proc))
+          "function)." % (time_time, time_proc))
 
     start_time = time.time()
     start_proc = time.process_time()
@@ -125,7 +129,7 @@ if RUNTIME_AES is True:
     time_proc = (time.process_time() - start_proc) * 1000
     time_time = (time.time() - start_time) * 1000
     print("decrypt: %.5f ms (time() function) | %.5f ms (process_time() "
-            "function).\n" % (time_time, time_proc))
+          "function).\n" % (time_time, time_proc))
 
 # Both results tested with: http://aes.online-domain-tools.com
 
@@ -149,6 +153,7 @@ def logical_xor(str1, str2):
     # in a string and fill the length to 128
     result = bin(result)[2:].zfill(128)
     return result
+
 
 def mdc2(message, iv_A, iv_B, blocksize, use_aesni):
     if RESULT is True:
@@ -216,11 +221,14 @@ iv_B = b'\x25\x25\x25\x25\x25\x25\x25\x25\x25\x25\x25\x25\x25\x25\x25\x25'\
 
 if MESSAGE_LENGTH == 64:
     # 64 bytes / 512 Bits
-    message = "e0a89090adfa0e1f1be62f5b3da546efc3dca7b767bbf3cc8684c7a38e56b4c5"
+    message = "e0a89090adfa0e1f1be62f5b3da546ef"
+    "c3dca7b767bbf3cc8684c7a38e56b4c5"
 elif MESSAGE_LENGTH == 128:
     # 128 bytes / 1024 Bits
-    message = "e0a89090adfa0e1f1be62f5b3da546efc3dca7b767bbf3cc8684c7a38e56b4c5e"\
-              "da05836539b77415639e4028d425b7a0dda7ef21300da924470e279c549d371"
+    message = "e0a89090adfa0e1f1be62f5b3da546ef"
+    "c3dca7b767bbf3cc8684c7a38e56b4c5"
+    "eda05836539b77415639e4028d425b7a"
+    "0dda7ef21300da924470e279c549d371"
 else:
     print("The defined MESSAGE_LENGTH is neither 64 nor 128 bytes.")
     exit(1)
@@ -253,9 +261,9 @@ if RUNTIME is True:
     print('Total time: \t\t{:5.3f}s'.format(time1))
     print('System time: \t\t{:5.3f}s'.format((ende_proc-start_proc)*1000))
     print("Runtime: \t\t%.5f ms (time() function) | %.5f ms (process_time() "
-            "function)." % (time1, (ende_proc-start_proc)*1000))
-    print("Runtime without AES: \t%.5f ms." % 
-            ((ende_proc-start_proc-time_xor_aes)*1000))
+          "function)." % (time1, (ende_proc-start_proc)*1000))
+    print("Runtime without AES: \t%.5f ms." %
+          ((ende_proc-start_proc-time_xor_aes)*1000))
 
 if RESULT is True:
     print("Result:")
@@ -286,9 +294,9 @@ if RUNTIME is True:
     print('Total time: \t\t{:5.3f}s'.format(time2))
     print('System time: \t\t{:5.3f}s'.format((ende_proc-start_proc)*1000))
     print("Runtime: \t\t%.5f ms | %.5f ms." %
-    (time2, (ende_proc-start_proc)*1000))
+          (time2, (ende_proc-start_proc)*1000))
     print("Runtime without AES: \t%.5f ms.\n" %
-    ((ende_proc-start_proc-time_xor_aes)*1000))
+          ((ende_proc-start_proc-time_xor_aes)*1000))
 
 if RESULT is True:
     print("Result:")
@@ -299,10 +307,10 @@ if RUNTIME is True:
     print("Difference between MDC-2 with AES and with or without AES_NI:")
     if time_absolut > 0:
         print("MDC-2 with AES and with AES_NI is %.5f ms faster then without"
-        "AES_NI." % (time_absolut))
+              "AES_NI." % (time_absolut))
     else:
         print("MDC-2 with AES and without AES_NI is %.5f ms faster then "
-        "without AES_NI." % (time_absolut * (-1)))
+              "without AES_NI." % (time_absolut * (-1)))
 
 ###############################################################################
 #   SHA3 (256 and 512 bit)                                                    #
