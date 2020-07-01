@@ -39,4 +39,4 @@ for details.
 
 ## Copyright
 
-Copyright (c) 2020 [Tim Kohlstadt](mailto:tim.kohlstadt@blun.org).
+Copyright (c) 2020 [Tim Kohlstadt](mailto:info@tikohlst.de).
